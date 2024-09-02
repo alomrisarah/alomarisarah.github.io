@@ -31,7 +31,7 @@
   })
   /******/
   /******/ // Execute the module function
-  /******/ __webpack_modules__[moduleId](module, module.exports, __webpack_require__)
+  /******/ __webpack_modules__[moduleId]=(module, module.exports, __webpack_require__)
   /******/
   /******/ // Return the exports of the module
   /******/ return module.exports
