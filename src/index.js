@@ -1,4 +1,4 @@
-import './style.css';
+import './src/style.css';
 
 import saveIcon from './assets/icons/clipart.jpj';
 import editIcon from './assets/icons/edit-246.png';
