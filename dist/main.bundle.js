@@ -146,7 +146,7 @@
     /***/
    },
 
-  /***/ "./src/modules/todo.js":
+  /***/ "./src/modules/main.js":
    /*!*****************************!*\
   !*** ./src/modules/todo.js ***!
   \*****************************/
@@ -158,15 +158,7 @@
     /***/
    },
 
-  /***/ "./src/assets/icons/add.png":
-   /*!**********************************!*\
-  !*** ./src/assets/icons/add.png ***!
-  \**********************************/
-   /***/ (module, __unused_webpack_exports, __webpack_require__) => {
-    eval('module.exports = __webpack_require__.p + "16fc5a7570ed4c8e8d14.png";\n\n//# sourceURL=webpack://todo-list/./src/assets/icons/add.png?')
 
-    /***/
-   },
 
   /***/ "./src/assets/icons/delete.png":
    /*!*************************************!*\
@@ -178,9 +170,9 @@
     /***/
    },
 
-  /***/ "./src/assets/icons/edit.png":
+  /***/ "./src/assets/icons/edit-246.png":
    /*!***********************************!*\
-  !*** ./src/assets/icons/edit.png ***!
+  !*** ./src/assets/icons/edit-246.png ***!
   \***********************************/
    /***/ (module, __unused_webpack_exports, __webpack_require__) => {
     eval('module.exports = __webpack_require__.p + "1a66e3ff46fd751ed6ca.png";\n\n//# sourceURL=webpack://todo-list/./src/assets/icons/edit.png?')
@@ -188,15 +180,7 @@
     /***/
    },
 
-  /***/ "./src/assets/icons/refresh.png":
-   /*!**************************************!*\
-  !*** ./src/assets/icons/refresh.png ***!
-  \**************************************/
-   /***/ (module, __unused_webpack_exports, __webpack_require__) => {
-    eval('module.exports = __webpack_require__.p + "6024ff510846bd253497.png";\n\n//# sourceURL=webpack://todo-list/./src/assets/icons/refresh.png?')
 
-    /***/
-   },
  },
  /******/ (__webpack_require__) => {
   // webpackRuntimeModules
