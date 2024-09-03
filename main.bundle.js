@@ -1,75 +1,107 @@
 "use strict"
 
-;(function () {
- // Check if the document is ready
- document.addEventListener("DOMContentLoaded", function () {
-  // Your main JavaScript code here
+// Function to run when the document is fully loaded
+const itemsArray = localStorage.getItem("items") ? JSON.parse(localStorage.getItem("items")) : []
+document.getElementById("add").addEventListener("click", (e) => {
+ if (item.value.length == 0) {
+  alert("Please Enter A Task")
+ } else {
+  const item = document.querySelector("#item")
+  createItem(item)
+ }
+})
+function displayItems() {
+ let items = ""
+ for (let i = 0; i < itemsArray.length; i++) {
+  items += `<div class="item">
+                <div class="input-controller disabled">
+                  <textarea disabled  name="newtask" >${itemsArray[i]}</textarea>
+                  <div class="edit-controller">
+                    <i class="fa fa-trash deleteBtn"></i>
+                 <img id="icon" src="edit-246.png"  class="editBtn" onclick="changeIcon()">
+    
+                  </div>
+                </div>
+              </div>`
+ }
+ document.querySelector(".to-do-list").innerHTML = items
+ activateDeleteListeners()
+ activateEditListeners()
+ activateSaveListeners()
+}
 
-  // Add event listener to add a new todo item
-  const addTodoButton = document.getElementById("add-todo")
-  if (addTodoButton) {
-   addTodoButton.addEventListener("click", function () {
-    const todoInput = document.getElementById("todo-input")
-    if (todoInput && todoInput.value.trim() !== "") {
-     addTodoItem(todoInput.value.trim())
-     todoInput.value = ""
-    }
-   })
-  }
-
-  // Function to add a new todo item
-  function addTodoItem(text) {
-   const todoList = document.getElementById("todo-list")
-   if (todoList) {
-    const li = document.createElement("li")
-    li.className = "todo-list-item"
-    li.innerHTML = `
-                    <input type="checkbox" class="select">
-                    <span class="todo-item">${text}</span>
-                    <img src="edit-icon.png" alt="Edit" class="edit-icon">
-                    <img src="remove-icon.png" alt="Remove" class="remove-icon">
-                `
-    todoList.appendChild(li)
-   }
-  }
-
-  // Add event listener to clear all todos
-  const clearButton = document.getElementById("clear")
-  if (clearButton) {
-   clearButton.addEventListener("click", function () {
-    const todoList = document.getElementById("todo-list")
-    if (todoList) {
-     todoList.innerHTML = ""
-    }
-   })
-  }
-
-  // Event delegation for todo list items (edit/remove)
-  const todoContainer = document.getElementById("todo")
-  if (todoContainer) {
-   todoContainer.addEventListener("click", function (event) {
-    if (event.target.classList.contains("remove-icon")) {
-     event.target.parentElement.remove()
-    } else if (event.target.classList.contains("edit-icon")) {
-     // Handle edit functionality here
-     alert("Edit functionality not implemented yet.")
-    }
-   })
-  }
-
-  // Example of handling checkbox change
-  const todoList = document.getElementById("todo-list")
-  if (todoList) {
-   todoList.addEventListener("change", function (event) {
-    if (event.target.classList.contains("select")) {
-     const todoItem = event.target.nextElementSibling
-     if (event.target.checked) {
-      todoItem.classList.add("checked")
-     } else {
-      todoItem.classList.remove("checked")
-     }
-    }
-   })
-  }
+function activateDeleteListeners() {
+ let deleteBtn = document.querySelectorAll(".deleteBtn")
+ deleteBtn.forEach((dB, i) => {
+  dB.addEventListener("click", () => {
+   deleteItem(i)
+  })
  })
-})()
+}
+function changeIcon() {
+ const icon = document.getElementById("icon")
+
+ if (icon.src.includes("edit-246.png")) {
+  icon.src = "clipart.jpg"
+  icon.id = "save"
+ }
+}
+function changeIcon1() {
+ const icon = document.getElementById("icon")
+
+ if (icon.src.includes("clipart.jpg")) {
+  icon.src = "edit-246.png"
+ }
+}
+
+function activateEditListeners() {
+ const editBtn = document.querySelectorAll(".editBtn")
+ const inputs = document.querySelectorAll(".input-controller   textarea")
+ editBtn.forEach((eB, i) => {
+  eB.addEventListener("click", () => {
+   inputs[i].disabled = false
+   activateSaveListeners()
+  })
+ })
+}
+
+function activateSaveListeners() {
+ const saveBtn = document.querySelectorAll("#save")
+ const inputs = document.querySelectorAll(".input-controller  textarea")
+ saveBtn.forEach((sB, i) => {
+  sB.addEventListener("click", () => {
+   updateItem(inputs[i].value, i)
+   inputs[i].disabled = true
+  })
+  changeIcon1()
+ })
+}
+
+var tasks = document.querySelectorAll(".item")
+for (var i = 0; i < tasks.length; i++) {
+ tasks[i].onclick = function () {
+  this.classList.toggle("completed")
+ }
+}
+
+function createItem(item) {
+ itemsArray.push(item.value)
+ localStorage.setItem("items", JSON.stringify(itemsArray))
+ location.reload()
+}
+
+function deleteItem(i) {
+ itemsArray.splice(i, 1)
+ localStorage.setItem("items", JSON.stringify(itemsArray))
+ location.reload()
+}
+
+function updateItem(text, i) {
+ itemsArray[i] = text
+ localStorage.setItem("items", JSON.stringify(itemsArray))
+ location.reload()
+}
+
+window.onload = function () {
+ displayItems()
+}
