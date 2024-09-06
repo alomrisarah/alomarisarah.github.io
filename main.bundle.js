@@ -73,6 +73,7 @@ function activateSaveListeners() {
    updateItem(inputs[i].value, i)
    inputs[i].disabled = true
   })
+  
   changeIcon1()
  })
 }
