@@ -17,9 +17,8 @@ function displayItems() {
                 <div class="input-controller disabled">
                   <textarea disabled  name="newtask" >${itemsArray[i]}</textarea>
                   <div class="edit-controller">
-                    <i class="fa fa-trash deleteBtn"></i>
-                 <img id="icon" src="edit-246.png"  class="editBtn" onclick="changeIcon()">
-    
+                 <img id="icon" src="/dist/edit-246.png" class="editBtn" onclick="changeIcon(this)">
+                 <img  src="/dist/delete.png"  class="deleteBtn">
                   </div>
                 </div>
               </div>`
@@ -38,21 +37,6 @@ function activateDeleteListeners() {
   })
  })
 }
-function changeIcon() {
- const icon = document.getElementById("icon")
-
- if (icon.src.includes("edit-246.png")) {
-  icon.src = "clipart.jpg"
-  icon.id = "save"
- }
-}
-function changeIcon1() {
- const icon = document.getElementById("icon")
-
- if (icon.src.includes("clipart.jpg")) {
-  icon.src = "edit-246.png"
- }
-}
 
 function activateEditListeners() {
  const editBtn = document.querySelectorAll(".editBtn")
@@ -65,6 +49,14 @@ function activateEditListeners() {
  })
 }
 
+function changeIcon(icon) {
+ if (icon.src.includes("edit-246.png")) {
+   icon.src = "/dist/clipart.jpg" // Change to the save icon
+   icon.id="save"
+ } else {
+  icon.src = "/dist/edit-246.png" // Change back to the edit icon
+ }
+}
 function activateSaveListeners() {
  const saveBtn = document.querySelectorAll("#save")
  const inputs = document.querySelectorAll(".input-controller  textarea")
@@ -73,12 +65,10 @@ function activateSaveListeners() {
    updateItem(inputs[i].value, i)
    inputs[i].disabled = true
   })
-  
-  changeIcon1()
  })
 }
 
-var tasks = document.querySelectorAll(".item")
+var tasks = document.querySelectorAll(".items")
 for (var i = 0; i < tasks.length; i++) {
  tasks[i].onclick = function () {
   this.classList.toggle("completed")
