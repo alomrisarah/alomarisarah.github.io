@@ -17,9 +17,9 @@ function displayItems() {
                 <div class="input-controller disabled">
                   <textarea disabled  name="newtask" >${itemsArray[i]}</textarea>
                   <div class="edit-controller">
-                    <i class="fa fa-trash deleteBtn"></i>
-                 <img id="icon" src="edit-246.png"  class="editBtn" onclick="changeIcon()">
-    
+                
+                 <img id="icon" src="/dist/edit-246.png" class="editBtn" onclick="changeIcon()">
+                 <img  src="/dist/delete.png"  class="deleteBtn">
                   </div>
                 </div>
               </div>`
@@ -41,16 +41,16 @@ function activateDeleteListeners() {
 function changeIcon() {
  const icon = document.getElementById("icon")
 
- if (icon.src.includes("edit-246.png")) {
-  icon.src = "clipart.jpg"
+ if (icon.src.includes("/dist/edit-246.png")) {
+  icon.src = "/dist/clipart.jpg"
   icon.id = "save"
  }
 }
 function changeIcon1() {
  const icon = document.getElementById("icon")
 
- if (icon.src.includes("clipart.jpg")) {
-  icon.src = "edit-246.png"
+ if (icon.src.includes("/dist/clipart.jpg")) {
+  icon.src = "/dist/edit-246.png"
  }
 }
 
