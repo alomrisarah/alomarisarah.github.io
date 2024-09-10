@@ -1,6 +1,3 @@
-"use strict"
-
-// Function to run when the document is fully loaded
 const itemsArray = localStorage.getItem("items") ? JSON.parse(localStorage.getItem("items")) : []
 document.getElementById("add").addEventListener("click", (e) => {
  if (item.value.length == 0) {
@@ -17,8 +14,8 @@ function displayItems() {
                 <div class="input-controller disabled">
                   <textarea disabled  name="newtask" >${itemsArray[i]}</textarea>
                   <div class="edit-controller">
-                 <img id="icon" src="/dist/edit-246.png" class="editBtn" onclick="changeIcon(this)">
-                 <img  src="/dist/delete.png"  class="deleteBtn">
+                 <i class='fa fa-edit editBtn' onclick="changeIcon(this)"></i>
+                 <i class="fa fa-trash-o  deleteBtn"></i>
                   </div>
                 </div>
               </div>`
@@ -50,11 +47,14 @@ function activateEditListeners() {
 }
 
 function changeIcon(icon) {
- if (icon.src.includes("edit-246.png")) {
-   icon.src = "/dist/clipart.jpg" // Change to the save icon
-   icon.id="save"
- } else {
-  icon.src = "/dist/edit-246.png" // Change back to the edit icon
+ if (icon.classList.contains("fa-edit")) {
+  icon.classList.remove("fa-edit")
+  icon.classList.add("fa-save")
+  icon.id = "save"
+ } else if (icon.classList.contains("fa-save")) {
+  icon.classList.remove("fa-save")
+  icon.classList.add("fa-edit")
+  icon.id = ""
  }
 }
 function activateSaveListeners() {
